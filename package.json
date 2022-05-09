@@ -1,0 +1,28 @@
+{
+  "name": "mapbox-query-features",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon --ext js,ts,json,env --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts"
+  },
+  "keywords": [
+    "mapbox",
+    "query-features",
+    "mapbox-server",
+    "server-query-features"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4",
+    "@types/geojson": "^7946.0.8"
+  },
+  "dependencies": {
+    "@mapbox/tilebelt": "^1.0.2",
+    "@mapbox/vt2geojson": "^1.1.5"
+  }
+}
