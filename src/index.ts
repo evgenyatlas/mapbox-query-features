@@ -10,6 +10,15 @@ interface IOptions {
     tilesetId: string
 }
 
+/**
+ * @description Alternative to {@link https://docs.mapbox.com/mapbox-gl-js/api/map/#map#queryrenderedfeatures queryRenderedFeatures}  for the server
+ * @param bbox bounding box from which we take the features
+ * @param {IOptions} options.zoom zoom 
+ * @param {IOptions} options.mapboxToken mapbox token
+ * @param {IOptions} options.layers layers
+ * @param {IOptions} options.tilesetId mapbox tileset id
+ * @returns 
+ */
 export async function queryfeatures(
     bbox: IBbox,
     {

@@ -1,5 +1,14 @@
 import vt2geojson from '@mapbox/vt2geojson';
 
+/**
+ * Get geojson from vector tile
+ * @param tile tile (area) from which we take geojson
+ * @param layers layer(s) on tile from which we take geojson
+ * @param token mapbox token
+ * @param tilesetId mapbox tileset id
+ * @returns geojson feature collection
+ * @description read more about api here {@link https://docs.mapbox.com/api/maps/vector-tiles/}
+ */
 export async function tile2geojson(
     tile: [number, number, number],
     layers: string[],
