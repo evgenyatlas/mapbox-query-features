@@ -1,6 +1,7 @@
-import { pointToTile } from '@mapbox/tilebelt'
 import { FeatureCollection } from 'geojson';
+import { bboxToTiles } from './lib/bboxToTiles';
 import { tile2geojson } from './lib/tile2geojson';
+import { IBbox } from './types';
 
 interface IOptions {
     zoom?: number
@@ -10,7 +11,7 @@ interface IOptions {
 }
 
 export async function queryfeatures(
-    bbox: [number, number, number, number],
+    bbox: IBbox,
     {
         zoom = 14,
         mapboxToken,
@@ -19,27 +20,16 @@ export async function queryfeatures(
     }: IOptions
 ): Promise<GeoJSON.FeatureCollection> {
 
-    const leftBottom = pointToTile(bbox[0], bbox[1], zoom)
-    const rightBottom = pointToTile(bbox[2], bbox[3], zoom)
-
-    const featureRequests: Array<Promise<FeatureCollection>> = []
-    for (let x = leftBottom[0]; x <= rightBottom[0]; x++) {
-        for (let y = leftBottom[1]; y >= rightBottom[1]; y--) {
-            featureRequests.push(
-                tile2geojson(
-                    [x, y, zoom],
-                    layers,
-                    mapboxToken,
-                    tilesetId
-                )
-            )
-        }
-    }
-
-    const features = (await Promise.all(featureRequests)).flatMap(({ features }) => features)
+    //Get the list of tiles that are inside bbox
+    const tiles = bboxToTiles(bbox, zoom)
+    //Make a feature request for each tile
+    const featureRequests: Array<Promise<FeatureCollection>> = tiles.map(tile => tile2geojson(tile, layers, mapboxToken, tilesetId));
 
     return {
         type: 'FeatureCollection',
-        features
+        //waiting for all requests
+        //flatten the array of feature collections
+        //to get all features in one featurecollection
+        features: (await Promise.all(featureRequests)).flatMap(({ features }) => features)
     }
 }
