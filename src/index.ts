@@ -19,7 +19,7 @@ interface IOptions {
  * @param {IOptions} options.tilesetId mapbox tileset id
  * @returns 
  */
-export async function queryfeatures(
+export async function queryFeatures(
     bbox: IBbox,
     {
         zoom = 14,
