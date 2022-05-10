@@ -1,9 +1,10 @@
 {
   "name": "mapbox-query-features",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": "https://github.com/evgenyatlas/mapbox-query-features",
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --ext js,ts,json,env --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts"

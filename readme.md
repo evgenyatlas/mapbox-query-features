@@ -7,7 +7,8 @@
 ```ts
 import { queryFeatures } from 'mapbox-query-features'
 
-const result: FeatureCollection = await queryfeatures(
+const result: FeatureCollection = await queryFeatures(
+    //bounding box from which we take the features 
     [30.255939960479733, 60.01106495448562, 30.272912979125973, 60.02215300039876],
     {
       zoom: 14,
@@ -26,4 +27,9 @@ const result: FeatureCollection = await queryfeatures(
 */
 result
 
+```
+## Installation
+
+```sh
+npm i --save mapbox-query-features
 ```
