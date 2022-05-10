@@ -2,7 +2,6 @@ import { FeatureCollection } from 'geojson';
 import { bboxToTiles } from './lib/bboxToTiles';
 import { tile2geojson } from './lib/tile2geojson';
 import { IBbox } from './types';
-import * as fs from 'fs'
 
 interface IOptions {
     zoom?: number
