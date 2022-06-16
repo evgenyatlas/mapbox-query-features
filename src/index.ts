@@ -1,6 +1,7 @@
-import { FeatureCollection } from 'geojson';
+import { BBox, FeatureCollection } from 'geojson';
 import { bboxToTiles } from './lib/bboxToTiles';
 import { tile2geojson } from './lib/tile2geojson';
+import { tilesToBBox } from './lib/tilesToBBox';
 import { IBbox } from './types';
 
 interface IOptions {
@@ -27,7 +28,7 @@ export async function queryFeatures(
         layers,
         tilesetId = "mapbox.mapbox-streets-v8"
     }: IOptions
-): Promise<GeoJSON.FeatureCollection> {
+): Promise<GeoJSON.FeatureCollection & { bbox: BBox }> {
 
     //Get the list of tiles that are inside bbox
     const tiles = bboxToTiles(bbox, zoom)
@@ -39,6 +40,8 @@ export async function queryFeatures(
         //waiting for all requests
         //flatten the array of feature collections
         //to get all features in one featurecollection
-        features: (await Promise.all(featureRequests)).flatMap(({ features }) => features)
+        features: (await Promise.all(featureRequests)).flatMap(({ features }) => features),
+        bbox: tilesToBBox(tiles)
     }
 }
+export { bboxToTiles } from './lib/bboxToTiles';

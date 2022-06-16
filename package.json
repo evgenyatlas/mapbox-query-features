@@ -7,7 +7,7 @@
   "repository": "https://github.com/evgenyatlas/mapbox-query-features",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --ext js,ts,json,env --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts"
+    "dev": "nodemon --ext js,ts,json,env --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/dev.ts"
   },
   "keywords": [
     "mapbox",
