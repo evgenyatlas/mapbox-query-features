@@ -44,3 +44,4 @@ export async function queryFeatures(
     }
 }
 export { bboxToTiles } from './lib/bboxToTiles';
+export * from './types'

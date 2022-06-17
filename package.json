@@ -1,6 +1,6 @@
 {
   "name": "mapbox-query-features",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
