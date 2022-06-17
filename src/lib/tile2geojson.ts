@@ -1,5 +1,6 @@
 import * as request from 'request'
 import { format } from 'util'
+import { FeatureCollection, Geometry } from '../types'
 import { readTile } from './readTile'
 
 /**
@@ -16,7 +17,7 @@ export async function tile2geojson(
     layers: string[],
     token: string,
     tilesetId: string
-): Promise<GeoJSON.FeatureCollection> {
+): Promise<FeatureCollection<Geometry>> {
     return new Promise((res, rej) => {
         const url = `https://api.mapbox.com/v4/${tilesetId}/${tile[2]}/${tile[0]}/${tile[1]}.vector.pbf?access_token=${token}`
         request.get({
