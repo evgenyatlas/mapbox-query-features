@@ -8,8 +8,6 @@ interface IOptions {
     mapboxToken: string
     layers: string[]
     tilesetId?: string
-    /** */
-    mergeSplitedFeature?: boolean
 }
 
 /**
@@ -19,7 +17,6 @@ interface IOptions {
  * @param {IOptions} options.mapboxToken mapbox token
  * @param {IOptions} options.layers layers
  * @param {IOptions} options.tilesetId mapbox tileset id
- * @param {IOptions} options.mergeSplitedFeature mapbox tileset id
  * @returns 
  */
 export async function queryFeatures(
@@ -29,7 +26,6 @@ export async function queryFeatures(
         mapboxToken,
         layers,
         tilesetId = "mapbox.mapbox-streets-v8",
-        mergeSplitedFeature
     }: IOptions
 ): Promise<FeatureCollection<Geometry> & { bbox: IBbox }> {
 
